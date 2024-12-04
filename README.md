@@ -1,4 +1,4 @@
-# unstructured-base-image
+# docling-base-image
 
 
 Based dockerfile for Unstructured library
