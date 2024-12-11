@@ -29,7 +29,7 @@ RUN mkdir -p /usr/local/share/tessdata && \
 # This will install torch with *only* cpu support
 # Remove the --extra-index-url part if you want to install all the gpu requirements
 # For more details in the different torch distribution visit https://pytorch.org/.
-RUN pip install --no-cache-dir docling==2.8.3 --extra-index-url https://download.pytorch.org/whl/cpu \
+RUN pip install --no-cache-dir docling==2.10.0 --extra-index-url https://download.pytorch.org/whl/cpu \
     rapidocr-onnxruntime
 
 
