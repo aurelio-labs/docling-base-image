@@ -29,7 +29,7 @@ RUN mkdir -p /usr/local/share/tessdata && \
 # This will install torch with *only* cpu support
 # Remove the --extra-index-url part if you want to install all the gpu requirements
 # For more details in the different torch distribution visit https://pytorch.org/.
-RUN pip install --no-cache-dir docling==2.10.0 --extra-index-url https://download.pytorch.org/whl/cpu \
+RUN pip install --no-cache-dir docling==2.28.0 --extra-index-url https://download.pytorch.org/whl/cpu \
     rapidocr-onnxruntime
 
 
@@ -37,11 +37,14 @@ RUN pip install --no-cache-dir docling==2.10.0 --extra-index-url https://downloa
 ENV HF_HOME=/tmp/
 ENV TORCH_HOME=/tmp/
 
-RUN python -c 'from deepsearch_glm.utils.load_pretrained_models import load_pretrained_nlp_models; load_pretrained_nlp_models(verbose=True);'
-RUN python -c 'from docling.pipeline.standard_pdf_pipeline import StandardPdfPipeline; StandardPdfPipeline.download_models_hf(force=True);'
+# docling-tools models download
+RUN docling-tools models download
+# RUN python -c 'from deepsearch_glm.utils.load_pretrained_models import load_pretrained_nlp_models; load_pretrained_nlp_models(verbose=True);'
+# RUN python -c 'from docling.pipeline.standard_pdf_pipeline import StandardPdfPipeline; StandardPdfPipeline.download_models_hf(force=True);'
 
 # On container environments, always set a thread budget to avoid undesired thread congestion.
-ENV OMP_NUM_THREADS=4
+# Will set in the application
+# ENV OMP_NUM_THREADS=4
 
 # On container shell:
 # > cd /root/
